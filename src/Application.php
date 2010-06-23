@@ -14,6 +14,8 @@
 
 namespace Console;
 
+use Console\Command\Manager;
+
 /**
  * Console application
  *
@@ -25,6 +27,56 @@ namespace Console;
  * @link      http://www.github.com/jlogsdon/php-cli-tools
  */
 class Application {
+    // Protected properties {{{
+
+    /**
+     * Command manager
+     *
+     * @var Console\Command\Manager
+     */
+    protected $_manager;
+
+    // }}}
+    // getCommandManager() {{{
+
+    public function getCommandManager() {
+        if (empty($this->_manager)) {
+            $this->_manager = new Manager();
+        }
+
+        return $this->_manager;
+    }
+
+    // }}}
+    // setCommandManager() {{{
+
+    public function setCommandManager(Manager $manager) {
+        $this->_manager = $manager;
+    }
+
+    // }}}
+    // __get() {{{
+
+    public function __get($prop) {
+        switch ($prop) {
+        case 'manager':
+            return $this->getCommandManager();
+        }
+    }
+
+    // }}}
+    // run() {{{
+
+    public function run() {
+        while (true) {
+            echo '> ';
+            $cmd = trim(fgets(STDIN));
+            $cmd = $this->manager->load($cmd);
+            $cmd->main();
+        }
+    }
+
+    // }}}
 }
 
 ?>

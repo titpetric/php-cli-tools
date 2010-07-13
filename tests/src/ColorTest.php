@@ -1,7 +1,6 @@
 <?php
-
 /**
- * PhpDocumentor is a JavaDoc-like documentation tool for PHP.
+ * PHP Console Tools is a console library for PHP
  *
  * PHP versions 5.3
  *
@@ -13,12 +12,12 @@
  * @link      http://www.github.com/mfacenet/phpDocumentor
  */
 
-use PEAR2\phpDocumentor2\Application;
+use Console\Color;
 
 require_once 'PHPUnit/Framework/TestCase.php';
 
 /**
- * Test cases for PEAR2\phpDocumentor2\Application
+ * Test case for Console\Color
  *
  * @category  ToolsAndUtilities
  * @package   phpDocumentor2
@@ -27,7 +26,14 @@ require_once 'PHPUnit/Framework/TestCase.php';
  * @license   http://www.opensource.org/licenses/bsd-license.php BSD
  * @link      http://www.github.com/mfacenet/phpDocumentor
  */
-class ApplicationTest extends PHPUnit_Framework_TestCase {
+class ColorTest extends PHPUnit_Framework_TestCase {
+    public function testIze() {
+        echo Color::ize('Can we #{color}.red #{me}.yellow #{silly}.green up in this') . "\n";
+        echo Color::ize('Can we #{color}.red(green,bright) #{me}.yellow #{silly}.green up in this') . "\n";
+        echo Color::ize('Can we #{color
+            something that spans
+    many lines of text}.red(bright) #{me}.yellow #{silly}.green up in this') . "\n";
+    }
 }
 
 ?>

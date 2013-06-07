@@ -237,13 +237,11 @@ class Streams
 	 *    - 'out'  (default: STDOUT)
 	 *    - 'err'  (default: STDERR)
 	 *
-	 * Any custom streams will be closed for you on shutdown, so please don't close stream
-	 * resources used with this method.
-	 *
 	 * @param string    $whichStream  The stream property to update
 	 * @param resource  $stream       The new stream resource to use
 	 * @return void
 	 * @throws \Exception Thrown if $stream is not a resource of the 'stream' type.
+	 * @throws \Exception Thrown if $whichStream doesn't exist
 	 */
 	public static function setStream( $whichStream, $stream ) {
 		if( !is_resource( $stream ) || get_resource_type( $stream ) !== 'stream' ) {
@@ -251,10 +249,9 @@ class Streams
 		}
 		if( property_exists( __CLASS__, $whichStream ) ) {
 			static::${$whichStream} = $stream;
+			return;
 		}
-		register_shutdown_function( function() use ($stream) {
-			@fclose( $stream );
-		} );
+		throw new \Exception("Invalid stream name '".$whichStream."'");
 	}
 
 	/**

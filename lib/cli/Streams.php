@@ -2,11 +2,11 @@
 
 namespace cli;
 
-class Streams {
-
-	protected static $out = STDOUT;
-	protected static $in = STDIN;
-	protected static $err = STDERR;
+class Streams
+{
+	public static $out = STDOUT;
+	public static $in = STDIN;
+	public static $err = STDERR;
 
 	static function _call( $func, $args ) {
 		$method = __CLASS__ . '::' . $func;

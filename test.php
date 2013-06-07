@@ -1,7 +1,8 @@
 <?php
 
+include("vendor/autoload.php");
+
 error_reporting(-1);
-require 'lib/cli/Arguments.php';
 
 $args = new \cli\Arguments(array(
 	'flags' => array(
@@ -25,10 +26,8 @@ $args = new \cli\Arguments(array(
 
 try {
     $args->parse();
-} catch (\cli\InvalidArguments $e) {
+} catch (\cli\arguments\InvalidArguments $e) {
     echo $e->getMessage() . "\n\n";
 }
 
 print_r($args->getArguments());
-
-?>

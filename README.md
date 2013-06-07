@@ -6,6 +6,13 @@ A collection of functions and classes to assist with command line development.
 Requirements
 
  * PHP >= 5.3
+ * [git_hooks](https://github.com/titpetric/git_hooks) - optional, for some git hooks
+ * [phpunit](https://github.com/sebastianbergmann/phpunit/) - optional, for running tests
+
+If you can, please use composer to install and use php-cli-tools.
+
+Run `composer require titpetric/php-cli-tools` to get started. Stability `dev-master` should be ok.
+
 
 Function List
 -------------
@@ -19,12 +26,14 @@ Function List
  * `\cli\choose($question, $choices = 'yn', $default = 'n')`
  * `\cli\menu($items, $default = false, $title = 'Choose an Item')`
 
+
 Progress Indicators
 -------------------
 
  * `\cli\notifier\Dots($msg, $dots = 3, $interval = 100)`
  * `\cli\notifier\Spinner($msg, $interval = 100)`
  * `\cli\progress\Bar($msg, $total, $interval = 100)`
+
 
 Tabular Display
 ---------------
@@ -43,6 +52,7 @@ table rendered for visual display.
 You can also explicitly set the renderer used by calling `\cli\Table::setRenderer()` and giving it an instance of one
 of the concrete `\cli\table\Renderer` classes.
 
+
 Argument Parser
 ---------------
 
@@ -50,12 +60,12 @@ Argument parsing uses a simple framework for taking a list of command line argum
 usually straight from `$_SERVER['argv']`, and parses the input against a set of
 defined rules.
 
-Check `example_args.php` for an example.
 
 Usage
 -----
 
-See `example.php` for examples.
+Check `examples/` folder for various examples. Also check out tests if you want to see
+how some features actually work and are used.
 
 
 Todo
@@ -63,3 +73,4 @@ Todo
 
  * Expand this README
  * Add doc blocks to rest of code
+ * Increase code coverage with phpunit tests

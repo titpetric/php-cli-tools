@@ -4,9 +4,9 @@ namespace cli;
 
 class Streams
 {
-	public static $out = STDOUT;
-	public static $in = STDIN;
-	public static $err = STDERR;
+	protected static $out = STDOUT;
+	protected static $in = STDIN;
+	protected static $err = STDERR;
 
 	static function _call( $func, $args ) {
 		$method = __CLASS__ . '::' . $func;
@@ -253,8 +253,26 @@ class Streams
 			static::${$whichStream} = $stream;
 		}
 		register_shutdown_function( function() use ($stream) {
-			fclose( $stream );
+			@fclose( $stream );
 		} );
 	}
 
+	/**
+	 * Gets stream by name
+         *
+	 * Valid $whichStream values are:
+	 *    - 'in'   (default: STDIN)
+	 *    - 'out'  (default: STDOUT)
+	 *    - 'err'  (default: STDERR)
+	 *
+	 * @return resource
+	 * @throws \Exception Thrown if $whichStream doesn't exist
+	 */
+
+	public static function getStream( $whichStream ) {
+		if( property_exists( __CLASS__, $whichStream ) ) {
+			return static::${$whichStream};
+		}
+		throw new \Exception("Invalid stream name '".$whichStream."'");
+	}
 }

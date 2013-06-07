@@ -14,6 +14,10 @@
 require 'common.php';
 
 $strict = in_array('--strict', $_SERVER['argv']);
+if ($strict) {
+	unset($_SERVER['argv'][array_search("--strict", $_SERVER['argv'])]);
+}
+
 $arguments = new \cli\Arguments(compact('strict'));
 
 $arguments->addFlag(array('verbose', 'v'), 'Turn on verbose output');

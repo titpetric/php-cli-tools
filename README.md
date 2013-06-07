@@ -9,7 +9,7 @@ Requirements
  * [git_hooks](https://github.com/titpetric/git_hooks) - optional, for some git hooks
  * [phpunit](https://github.com/sebastianbergmann/phpunit/) - optional, for running tests
 
-If you can, please use composer to install and use php-cli-tools.
+If you can, please use composer to install and use php-cli-tools from [titpetric/php-cli-tools](https://packagist.org/packages/titpetric/php-cli-tools).
 
 Run `composer require titpetric/php-cli-tools` to get started. Stability `dev-master` should be ok.
 

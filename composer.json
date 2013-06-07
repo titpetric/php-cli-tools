@@ -1,15 +1,21 @@
 {
-    "name":        "wp-cli/php-cli-tools",
+    "name":        "titpetric/php-cli-tools",
     "type":        "library",
     "description": "Console utilities for PHP",
-    "keywords":    ["console", "cli"],
-    "homepage":    "http://github.com/jlogsdon/php-cli-tools",
+    "keywords":    ["console", "cli", "php", "php cli"],
+    "homepage":    "http://github.com/titpetric/php-cli-tools",
     "license":     "MIT",
     "authors": [
         {
             "name":  "James Logsdon",
             "email": "jlogsdon@php.net",
             "role":  "Developer"
+        },
+        {
+            "name": "Tit Petric",
+            "email": "tit.petric@monotek.net",
+            "homepage": "http://titpetric.github.io",
+            "role": "developer"
         }
     ],
     "require": {

@@ -1,0 +1,10 @@
+  \cli\out sends output to STDOUT
+  It does not automatically append a new line
+  It does accept any number of arguments which are then passed to sprintf for formatting
+  Alternatively, you can use an array as the second argument.
+
+  \cli\line forwards to \cli\out for output
+  It does automatically append a new line
+  It does accept any number of arguments which are then passed to sprintf for formatting
+  Alternatively, you can use an array as the second argument.
+

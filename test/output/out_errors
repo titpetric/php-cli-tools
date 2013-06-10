@@ -1,0 +1,5 @@
+  \cli\err sends output to STDERR
+  It does automatically append a new line
+  It does accept any number of arguments which are then passed to sprintf for formatting
+  Alternatively, you can use an array as the second argument.
+

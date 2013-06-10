@@ -18,6 +18,7 @@ namespace cli;
 class Table {
 	protected $_renderer;
 	protected $_headers = array();
+	protected $_align = array();
 	protected $_width = array();
 	protected $_rows = array();
 
@@ -98,6 +99,7 @@ class Table {
 	 */
 	public function display() {
 		$this->_renderer->setWidths($this->_width);
+		$this->_renderer->setAlign($this->_align);
 		$border = $this->_renderer->border();
 
 		if (isset($border)) {
@@ -131,6 +133,16 @@ class Table {
 		usort($this->_rows, function($a, $b) use ($column) {
 			return strcmp($a[$column], $b[$column]);
 		});
+	}
+
+	/**
+	 * Align the column contents. Default is to align left.
+	 *
+	 * @param int  $column  The index of the column to realign.
+	 * @param string  $align  left|right|center|middle
+	 */
+	public function align($column, $side) {
+		$this->_align[$column] = $side;
 	}
 
 	/**

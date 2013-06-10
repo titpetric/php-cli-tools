@@ -144,12 +144,21 @@ class Colors {
 	 *
 	 * @param string  $string  the string to pad
 	 * @param integer  $length  the display length
+	 * @param integer  $align  left|right|center|middle
 	 */
-	static public function pad($string, $length) {
+	static public function pad($string, $length, $side = "left") {
 		$real_length = strlen($string);
 		$show_length = self::length($string);
 		$length  += $real_length - $show_length;
 
-		return str_pad($string, $length);
+		$align = STR_PAD_RIGHT;
+		if ($side === "center" || $side === "middle") {
+			$align = STR_PAD_BOTH;
+		}
+		if ($side === "right") {
+			$align = STR_PAD_LEFT;
+		}
+
+		return str_pad($string, $length, " ", $align);
 	}
 }

@@ -54,11 +54,8 @@ class Table {
 			$this->setRows($rows);
 		}
 
-		if (\cli\Shell::isPiped()) {
-			$this->setRenderer(new \cli\table\Tabular());
-		} else {
-			$this->setRenderer(new \cli\table\Ascii());
-		}
+		$className = '\cli\table' . (\cli\Shell::isPiped() ? '\Tabular' : '\Ascii');
+		$this->setRenderer(new $className());
 	}
 
 	/**

@@ -120,11 +120,16 @@ class Table {
 	}
 
 	/**
-	 * Sort the table by a column. Must be called before `cli\Table::display()`.
+	 * Sort the table by a column / with a callable. Must be called before `cli\Table::display()`.
 	 *
-	 * @param int  $column  The index of the column to sort by.
+	 * @param mixed  $column  The index of the column to sort by, or callable to use with usort().
 	 */
 	public function sort($column) {
+		if (is_callable($column)) {
+			usort($this->_rows, $column);
+			return;
+		}
+
 		if (!isset($this->_headers[$column])) {
 			trigger_error('No column with index ' . $column, E_USER_NOTICE);
 			return;

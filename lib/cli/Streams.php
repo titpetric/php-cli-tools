@@ -206,12 +206,13 @@ class Streams
 		}
 
 		foreach( $map as $idx => $item ) {
-			self::line( '  %d. ' . (string)$item, $idx + 1);
+			$index = $idx + 1;
+			self::line( '  %_{:index}%n. {:item}', compact("index", "item"));
 		}
 		self::line();
 
 		while( true ) {
-			fwrite( static::$out, sprintf( '%s: ', $title ) );
+			self::out('{:title}: ', compact("title"));
 			$line = self::input();
 
 			if( is_numeric( $line ) ) {
